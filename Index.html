@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cornerstone Lead Co. — Roofing & HVAC Appointments</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #0D1B2A;
+      --slate:  #1A2E42;
+      --steel:  #2C4A6E;
+      --gold:   #C9933A;
+      --gold-lt:#E8B86D;
+      --cream:  #F5F0E8;
+      --white:  #FFFFFF;
+      --gray:   #8A9BB0;
+      --light:  #EDF2F7;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--navy);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 48px;
+      background: rgba(13,27,42,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,147,58,0.2);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.02em;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-cta {
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 600; font-size: 0.85rem;
+      padding: 10px 24px;
+      border-radius: 2px;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--gold-lt); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: var(--navy);
+      display: flex; align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 48px 80px;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 80% 50%, rgba(44,74,110,0.5) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,147,58,0.08) 0%, transparent 60%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; opacity: 0.04;
+      background-image:
+        linear-gradient(var(--steel) 1px, transparent 1px),
+        linear-gradient(90deg, var(--steel) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-inner {
+      position: relative; z-index: 2;
+      max-width: 1100px; margin: 0 auto; width: 100%;
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(201,147,58,0.15);
+      border: 1px solid rgba(201,147,58,0.35);
+      color: var(--gold-lt);
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 7px 16px; border-radius: 2px;
+      margin-bottom: 32px;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-tag::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      max-width: 780px;
+      margin-bottom: 28px;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+    h1 em {
+      font-style: normal;
+      color: var(--gold);
+      position: relative;
+    }
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--gray);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+      font-weight: 300;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+    .hero-actions {
+      display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 700; font-size: 0.9rem;
+      padding: 16px 36px;
+      border-radius: 2px;
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+    .btn-primary:hover {
+      background: var(--gold-lt);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(201,147,58,0.35);
+    }
+    .btn-secondary {
+      color: var(--gray);
+      font-size: 0.9rem;
+      text-decoration: none;
+      display: flex; align-items: center; gap: 8px;
+      transition: color 0.2s;
+    }
+    .btn-secondary:hover { color: var(--white); }
+    .btn-secondary::after {
+      content: '→';
+      transition: transform 0.2s;
+    }
+    .btn-secondary:hover::after { transform: translateX(4px); }
+
+    .hero-stats {
+      display: flex; gap: 48px; flex-wrap: wrap;
+      margin-top: 72px; padding-top: 48px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      animation: fadeUp 0.6s 0.4s ease both;
+    }
+    .stat-item {}
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem; font-weight: 700;
+      color: var(--white);
+      line-height: 1;
+    }
+    .stat-num span { color: var(--gold); }
+    .stat-label {
+      font-size: 0.8rem; color: var(--gray);
+      text-transform: uppercase; letter-spacing: 0.1em;
+      margin-top: 6px;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      background: var(--slate);
+      padding: 20px 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .trust-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: center;
+      gap: 48px; flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 10px;
+      color: var(--gray); font-size: 0.82rem;
+      letter-spacing: 0.06em; text-transform: uppercase; font-weight: 500;
+    }
+    .trust-item svg { color: var(--gold); flex-shrink: 0; }
+
+    /* ── SECTION BASE ── */
+    section { padding: 100px 48px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-tag {
+      display: inline-block;
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--navy);
+      margin-bottom: 20px;
+    }
+    .section-sub {
+      font-size: 1.05rem; color: #5a6a7a;
+      line-height: 1.7; max-width: 560px;
+      font-weight: 300;
+    }
+
+    /* ── PROBLEM ── */
+    .problem { background: var(--white); }
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center;
+      margin-top: 64px;
+    }
+    .problem-list { list-style: none; }
+    .problem-list li {
+      display: flex; gap: 16px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--light);
+    }
+    .problem-list li:last-child { border-bottom: none; }
+    .problem-icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      background: #FEF3E2;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .problem-text strong {
+      display: block;
+      font-size: 0.95rem; font-weight: 600;
+      color: var(--navy); margin-bottom: 4px;
+    }
+    .problem-text p {
+      font-size: 0.88rem; color: #6a7a8a; line-height: 1.6;
+    }
+    .problem-quote {
+      background: var(--navy);
+      border-radius: 4px;
+      padding: 40px;
+      position: relative;
+    }
+    .problem-quote::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 8rem; line-height: 1;
+      color: var(--gold); opacity: 0.3;
+      position: absolute; top: 10px; left: 24px;
+    }
+    .problem-quote p {
+      font-size: 1.15rem;
+      color: var(--white);
+      line-height: 1.7;
+      font-weight: 300;
+      position: relative; z-index: 1;
+      margin-bottom: 24px;
+    }
+    .problem-quote .attribution {
+      color: var(--gray); font-size: 0.83rem;
+      text-transform: uppercase; letter-spacing: 0.08em;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how { background: var(--cream); }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 64px;
+      background: var(--light);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .step {
+      background: var(--white);
+      padding: 48px 36px;
+      position: relative;
+      transition: background 0.3s;
+    }
+    .step:hover { background: var(--navy); }
+    .step:hover .step-num,
+    .step:hover .step-title,
+    .step:hover .step-body { color: var(--white); }
+    .step:hover .step-num { color: var(--gold); }
+    .step-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem; font-weight: 900;
+      color: var(--light);
+      line-height: 1;
+      margin-bottom: 16px;
+      transition: color 0.3s;
+    }
+    .step-title {
+      font-size: 1.05rem; font-weight: 600;
+      color: var(--navy); margin-bottom: 12px;
+      transition: color 0.3s;
+    }
+    .step-body {
+      font-size: 0.88rem; color: #6a7a8a;
+      line-height: 1.7;
+      transition: color 0.3s;
+    }
+    .step:hover .step-body { color: var(--gray); }
+
+    /* ── WHAT YOU GET ── */
+    .offer { background: var(--navy); }
+    .offer .section-title { color: var(--white); }
+    .offer .section-sub { color: var(--gray); }
+    .offer-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 64px;
+    }
+    .offer-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 4px;
+      padding: 36px;
+      transition: all 0.3s;
+    }
+    .offer-card:hover {
+      background: rgba(201,147,58,0.08);
+      border-color: rgba(201,147,58,0.3);
+      transform: translateY(-4px);
+    }
+    .offer-card-icon {
+      font-size: 1.6rem; margin-bottom: 16px;
+    }
+    .offer-card h3 {
+      font-size: 1rem; font-weight: 600;
+      color: var(--white); margin-bottom: 10px;
+    }
+    .offer-card p {
+      font-size: 0.88rem; color: var(--gray); line-height: 1.7;
+    }
+
+    /* ── WHY US ── */
+    .why { background: var(--white); }
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: start;
+      margin-top: 64px;
+    }
+    .diff-list { list-style: none; display: flex; flex-direction: column; gap: 24px; }
+    .diff-item {
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .diff-check {
+      width: 28px; height: 28px; flex-shrink: 0;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--navy); font-weight: 700; font-size: 0.75rem;
+      margin-top: 2px;
+    }
+    .diff-text strong {
+      display: block; font-size: 0.95rem; font-weight: 600;
+      color: var(--navy); margin-bottom: 4px;
+    }
+    .diff-text p { font-size: 0.88rem; color: #6a7a8a; line-height: 1.6; }
+
+    .compare-table { width: 100%; border-collapse: collapse; border-radius: 4px; overflow: hidden; }
+    .compare-table thead tr {
+      background: var(--navy);
+    }
+    .compare-table th {
+      padding: 14px 20px; text-align: left;
+      font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--white);
+    }
+    .compare-table th:last-child { color: var(--gold); }
+    .compare-table tbody tr { border-bottom: 1px solid var(--light); }
+    .compare-table tbody tr:last-child { border-bottom: none; }
+    .compare-table td {
+      padding: 14px 20px; font-size: 0.87rem; color: #5a6a7a;
+    }
+    .compare-table td:first-child { font-weight: 500; color: var(--navy); }
+    .compare-table .bad { color: #C0392B; }
+    .compare-table .good { color: #27AE60; font-weight: 600; }
+    .compare-table tbody tr:nth-child(even) td { background: var(--light); }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--gold);
+      padding: 100px 48px;
+    }
+    .cta-inner {
+      max-width: 700px; margin: 0 auto; text-align: center;
+    }
+    .cta-inner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .cta-inner p {
+      font-size: 1.05rem; color: rgba(13,27,42,0.7);
+      line-height: 1.7; margin-bottom: 40px;
+      font-weight: 300;
+    }
+    .btn-dark {
+      background: var(--navy);
+      color: var(--white);
+      font-weight: 700; font-size: 0.9rem;
+      padding: 18px 44px;
+      border-radius: 2px;
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+    .btn-dark:hover {
+      background: var(--slate);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(13,27,42,0.25);
+    }
+    .cta-note {
+      margin-top: 20px; font-size: 0.82rem;
+      color: rgba(13,27,42,0.55);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      padding: 40px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; font-weight: 700;
+      color: var(--white);
+    }
+    .footer-logo span { color: var(--gold); }
+    footer p { font-size: 0.8rem; color: var(--gray); }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0; transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1; transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      section { padding: 72px 24px; }
+      .hero { padding: 100px 24px 64px; }
+      .problem-grid,
+      .why-grid { grid-template-columns: 1fr; gap: 40px; }
+      .steps { grid-template-columns: 1fr; }
+      .offer-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 32px; }
+      .trust-inner { gap: 24px; }
+      footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
+      .cta-section { padding: 72px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Cornerstone <span>Lead Co.</span></div>
+    <a href="#book" class="nav-cta">Book a Call</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-inner">
+      <div class="hero-tag">Roofing & HVAC Lead Generation</div>
+      <h1>Your calendar filled.<br/><em>Every single month.</em></h1>
+      <p class="hero-sub">
+        We put qualified homeowners on your schedule who are ready for an estimate — so you can focus on doing the work, not hunting for it.
+      </p>
+      <div class="hero-actions">
+        <a href="#book" class="btn-primary">Book a Free Discovery Call</a>
+        <a href="#how" class="btn-secondary">See how it works</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">8<span>–15</span></div>
+          <div class="stat-label">Appointments per month</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num"><span>1</span></div>
+          <div class="stat-label">Contractor per territory</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num"><span>5</span>min</div>
+          <div class="stat-label">Lead response time</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">100<span>%</span></div>
+          <div class="stat-label">Qualified before handoff</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-inner">
+      <div class="trust-item">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        Exclusive per territory
+      </div>
+      <div class="trust-item">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        Every lead pre-qualified
+      </div>
+      <div class="trust-item">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        Booked directly to your calendar
+      </div>
+      <div class="trust-item">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        No long-term contracts
+      </div>
+    </div>
+  </div>
+
+  <!-- PROBLEM -->
+  <section class="problem reveal">
+    <div class="section-inner">
+      <div class="section-tag">The Problem</div>
+      <h2 class="section-title">Great contractors shouldn't have to be great marketers.</h2>
+      <div class="problem-grid">
+        <ul class="problem-list">
+          <li>
+            <div class="problem-icon">📉</div>
+            <div class="problem-text">
+              <strong>Feast or famine cycle</strong>
+              <p>You're slammed in summer, starving in fall. Without a consistent pipeline, you're always one slow month away from stress.</p>
+            </div>
+          </li>
+          <li>
+            <div class="problem-icon">💸</div>
+            <div class="problem-text">
+              <strong>Overpaying for bad leads</strong>
+              <p>Platforms like HomeAdvisor and Angi sell the same lead to 5 contractors simultaneously. You're competing on price before you even pick up the phone.</p>
+            </div>
+          </li>
+          <li>
+            <div class="problem-icon">⏰</div>
+            <div class="problem-text">
+              <strong>No time to figure out marketing</strong>
+              <p>You built your business doing the work, not running ad campaigns. Learning Facebook Ads while managing a crew isn't realistic.</p>
+            </div>
+          </li>
+          <li>
+            <div class="problem-icon">🔄</div>
+            <div class="problem-text">
+              <strong>Too dependent on referrals</strong>
+              <p>Referrals are great — but you can't control the volume or timing. Growth requires a system you can actually predict.</p>
+            </div>
+          </li>
+        </ul>
+        <div class="problem-quote">
+          <p>I was spending $1,200 a month on HomeAdvisor leads and sharing every single one with four other roofers. Half the time the homeowner had already booked someone else before I called back.</p>
+          <div class="attribution">— Common experience among roofing contractors</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how reveal" id="how">
+    <div class="section-inner">
+      <div class="section-tag">How It Works</div>
+      <h2 class="section-title">Three steps. Zero guesswork.</h2>
+      <p class="section-sub">We handle the entire process from finding interested homeowners to booking them on your calendar. You just show up and close.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-title">We target homeowners in your area</div>
+          <p class="step-body">Using targeted Facebook and Instagram campaigns, we reach homeowners within your service radius who are actively looking for roofing or HVAC help — not just browsing.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-title">We qualify every single lead</div>
+          <p class="step-body">When a homeowner responds, we call them within 5 minutes. We confirm they own the home, the problem is real, they're in your area, and they're ready for an estimate this week.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-title">We book them directly to your calendar</div>
+          <p class="step-body">Only after passing our qualification checklist does a lead hit your schedule. You receive the appointment details, show up, give the quote, and close the job.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT YOU GET -->
+  <section class="offer reveal">
+    <div class="section-inner">
+      <div class="section-tag" style="color: var(--gold-lt);">The Cornerstone Pipeline</div>
+      <h2 class="section-title">Everything included. Nothing to figure out.</h2>
+      <p class="section-sub">When you partner with Cornerstone, you get a complete done-for-you appointment system — not just a lead list.</p>
+      <div class="offer-grid">
+        <div class="offer-card">
+          <div class="offer-card-icon">🎯</div>
+          <h3>Targeted Ad Campaigns</h3>
+          <p>We build and manage Facebook and Instagram campaigns specifically designed for your service area, targeting homeowners most likely to need your services right now.</p>
+        </div>
+        <div class="offer-card">
+          <div class="offer-card-icon">📞</div>
+          <h3>Same-Day Lead Response</h3>
+          <p>Every lead gets a call within 5 minutes of submitting their information. We never let a lead go cold. Fast response is the single biggest driver of conversion.</p>
+        </div>
+        <div class="offer-card">
+          <div class="offer-card-icon">✅</div>
+          <h3>Full Lead Qualification</h3>
+          <p>We verify homeownership, confirm the scope of work, check service area, and gauge timeline before anything goes on your calendar. No tire-kickers.</p>
+        </div>
+        <div class="offer-card">
+          <div class="offer-card-icon">📅</div>
+          <h3>Direct Calendar Booking</h3>
+          <p>Qualified appointments go straight into your schedule with all the details you need — address, issue, homeowner contact info, and best time to show up.</p>
+        </div>
+        <div class="offer-card">
+          <div class="offer-card-icon">📊</div>
+          <h3>Monthly Performance Reports</h3>
+          <p>Every month you get a clear breakdown: leads generated, appointments booked, cost per lead, and what we're doing next to improve results.</p>
+        </div>
+        <div class="offer-card">
+          <div class="offer-card-icon">🔒</div>
+          <h3>Exclusive Territory Lock</h3>
+          <p>We work with one roofing and one HVAC contractor per area. When your territory is locked, no competitor in your market gets access to our system.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="why reveal">
+    <div class="section-inner">
+      <div class="section-tag">Why Cornerstone</div>
+      <h2 class="section-title">Not all lead generation is created equal.</h2>
+      <div class="why-grid">
+        <ul class="diff-list">
+          <li class="diff-item">
+            <div class="diff-check">✓</div>
+            <div class="diff-text">
+              <strong>We only work with one contractor per territory</strong>
+              <p>Every lead we generate is yours and yours alone. No competing with five other roofers on the same homeowner.</p>
+            </div>
+          </li>
+          <li class="diff-item">
+            <div class="diff-check">✓</div>
+            <div class="diff-text">
+              <strong>We qualify before you hear a word</strong>
+              <p>By the time an appointment hits your calendar, we've already confirmed the homeowner is serious, local, and ready. Your time isn't wasted on dead ends.</p>
+            </div>
+          </li>
+          <li class="diff-item">
+            <div class="diff-check">✓</div>
+            <div class="diff-text">
+              <strong>You keep full control of your schedule</strong>
+              <p>We book around your availability. No surprise calls. No leads showing up at inconvenient times. Your calendar, your terms.</p>
+            </div>
+          </li>
+          <li class="diff-item">
+            <div class="diff-check">✓</div>
+            <div class="diff-text">
+              <strong>Month-to-month — no long-term lock-in</strong>
+              <p>We earn your business every month by delivering results. No 12-month contracts. If we're not performing, you're not stuck.</p>
+            </div>
+          </li>
+        </ul>
+        <div>
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>HomeAdvisor / Angi</th>
+                <th>Cornerstone</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Exclusive leads</td>
+                <td class="bad">✗ Shared with 3–5 contractors</td>
+                <td class="good">✓ Yours only</td>
+              </tr>
+              <tr>
+                <td>Lead qualification</td>
+                <td class="bad">✗ None</td>
+                <td class="good">✓ Fully qualified</td>
+              </tr>
+              <tr>
+                <td>Calendar booking</td>
+                <td class="bad">✗ You chase them</td>
+                <td class="good">✓ Pre-booked</td>
+              </tr>
+              <tr>
+                <td>Territory exclusivity</td>
+                <td class="bad">✗ Open to all</td>
+                <td class="good">✓ Locked per area</td>
+              </tr>
+              <tr>
+                <td>Contract required</td>
+                <td class="bad">✗ Annual contracts</td>
+                <td class="good">✓ Month-to-month</td>
+              </tr>
+              <tr>
+                <td>Avg. cost per lead</td>
+                <td class="bad">$30–$100 (unqualified)</td>
+                <td class="good">$20–$40 (qualified)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section reveal" id="book">
+    <div class="cta-inner">
+      <h2>Ready to fill your calendar?</h2>
+      <p>Book a free 15-minute discovery call. We'll look at your service area, talk about your current lead situation, and show you exactly how many appointments we can realistically generate for your business each month.</p>
+      <a href="https://calendly.com" target="_blank" class="btn-dark">Book Your Free Call Today</a>
+      <p class="cta-note">No pitch. No pressure. Just a straight conversation about whether this is the right fit.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Cornerstone <span>Lead Co.</span></div>
+    <p>Roofing & HVAC Lead Generation</p>
+    <p style="color: var(--gray); font-size: 0.78rem;">© 2026 Cornerstone Lead Co. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
